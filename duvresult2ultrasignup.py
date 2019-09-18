@@ -109,17 +109,12 @@ for results_row in results.findAll('tr'):
 
     age = event_year - runner_yob
     gender = cols[6].text.strip()
-    state  = cols[4].text.strip()
+    state  = cols[4].text.strip() # fixme: country!! GER vs DEU ?!!
+    # todo: could try to extract city from "club" field (indicated via *cityname)
     
-    output_row.append(place)
-    output_row.append(time)
-    output_row.append(first)
-    output_row.append(last)
-    output_row.append(str(age))
-    output_row.append(gender)
-    output_row.append(state)
-
+    output_row.extend((place, time, first, last, str(age), gender, state))
     output_rows.append(output_row)
+
     if args.verbose > 1:
         print("Found: " + str(output_row))
 
