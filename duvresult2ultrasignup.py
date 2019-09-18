@@ -59,7 +59,7 @@ date1 = date_row.findAll('td')[0].text.strip()
 date2 = date_row.findAll('td')[1].text.strip()
 if date1 == "Date:":
     try:
-        event_year = int(date2.split('.')[2])
+        event_year = int(date2.split('.')[-1])
     except ValueError:
         print("Warn: could not get event year from result page", file=sys.stderr)
         if not args.year:
@@ -67,7 +67,7 @@ if date1 == "Date:":
             sys.exit(1)
 
     if args.verbose:
-        print("Found event Year: " + str(event_year))
+        print("Found event Year: " + str(event_year) + " (" + date2 + ")")
 
 if args.year:
     if event_year:
